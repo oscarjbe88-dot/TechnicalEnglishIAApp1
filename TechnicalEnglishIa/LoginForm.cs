@@ -29,13 +29,13 @@ namespace TechnicalEnglishIa
             string Email = txtEmail.Text;
             string Password = txtPass.Text;
 
-            if (Email == null || Email == "")
+            if (string.IsNullOrWhiteSpace(Email))
             {
                 MessageBox.Show("Email Field is required");
                 return;
             }
 
-            if (Password == null || Password == "")
+            if (string.IsNullOrWhiteSpace(Password))
             {
                 MessageBox.Show("Password Field is required");
                 return;
@@ -50,6 +50,12 @@ namespace TechnicalEnglishIa
             }
 
             MessageBox.Show($"Hello, {user.UserName}");
+
+            // ✅ ABRIR EL FORMULARIO PRINCIPAL DESPUÉS DEL LOGIN EXITOSO
+            this.Hide(); // Oculta el formulario de login
+            FormPrincipal formPrincipal = new FormPrincipal();
+            formPrincipal.ShowDialog(); // Muestra el formulario principal (traductor)
+            this.Close(); // Cierra el formulario de login cuando se cierre el principal
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,5 +126,10 @@ namespace TechnicalEnglishIa
             int nRightRect, int nBottomRect,
             int nWidthEllipse, int nHeightEllipse
         );
+
+        private void LoginForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
